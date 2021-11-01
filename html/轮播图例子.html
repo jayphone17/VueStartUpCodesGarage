@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+</head>
+<body>
+    <div id="mask">
+        <div class="center">
+            <h2 class="title">
+                <img src="" alt="">
+            </h2>
+        </div>
+        <!-- 图片 -->
+        <img :src="imgArray[index]" alt="">
+        <!-- 左箭头 -->
+        <a href="javascript:void(0)" @click = "pre" v-show = "index!=0">上一张</a>
+        <!-- 右箭头 -->
+        <a href="javascript:void(0)" @click = "next" v-show = "index!=imgArray,length-1">下一张</a> 
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({ 
+            el:"#mask",
+            data :{
+                imgArray:[
+                    "./img/0.001PercentCompressLenna.png",
+                    "./img/0.005PercentCompressLenna.png",
+                    "./img/0.1PercentCompressLenna.png",
+                    "./img/0.2PercentCompressLenna.png",
+                    "./img/0.3PercentCompressLenna.png",
+                    "./img/0.4PercentCompressLenna.png",
+                    "./img/0.5PercentCompressLenna.png",
+                ],
+                index:0,
+            },
+            methods: {
+                pre(){
+                    this.index--
+                },
+                next(){
+                    this.index++
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <link rel="stylesheet" type="text/css" href="./css/index1.css"/>
+    <title>记事本</title>
+</head>
+<body>
+    <!-- 主体区域 -->
+    <section id="todoapp">
+        <!-- 输入框 -->
+        <header id="header">
+            <h1>记事本demo</h1>
+            <input v-model="inputValue" @keyup.enter="add" autofocus="autofocus" 
+            autocomplete="off" placeholder="请输入记事内容" class="new-todo"/>
+        </header>
+        <!-- 列表区域 -->
+        <section class="main">
+            <ul class="todo-list">
+                <li class="todo" v-for = "(item,index) in list">
+                    <div class="view">
+                        <span class="index">{{ index+1 }}.</span>
+                        <label >{{item}}</label>
+                        <button class="destroy" @click="remove(index)"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <!-- 统计和清空 -->
+        <footer class="footer" v-show="list.length!=0">
+            <span class="todo-count" v-if="list.length!=0">
+                <strong>{{ list.length }}</strong>
+                item left
+            </span>
+            <button class="clear-completed" @click="clear" v-show="list.length!=0">
+                Clear
+            </button>
+        </footer>
+    </section>
+    <!-- 底部区域 -->
+    <footer class="info">
+        ...
+    </footer>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var aoo = new Vue({
+            el:"#todoapp",
+            data:{
+                list:["写代码","吃饭","洗澡"],
+                inputValue:"请输入记事内容"
+            },
+            methods: {
+                add(){
+                    this.list.push(this.inputValue)
+                },
+                remove(index){
+                    this.list.splice(index,1)
+                },
+                clear(){
+                    this.list = []
+                }
+            },
+        })
+    </script>
+</body>
+</html>
